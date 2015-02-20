@@ -4,13 +4,12 @@ header( 'content-type: text/html; charset=utf-8' );
 		$sql = "SELECT
                     `id`,
                     `nom_commerce`, 
-                    `nom_proprietaire`, 
-                    `mail`, 
-                    `num`,
                     `adresse`, 
-                    `date_inscription`
+                    `numero`, 
+                    `horaire`,
+                    `image`
 				FROM
-					`commerces`
+					`mode_beaute`
 				WHERE
 					`id` = " . (int) $_REQUEST['id'] . ";";
 		if ( !( $result = $db->query( $sql ) ) ) {
@@ -21,38 +20,35 @@ header( 'content-type: text/html; charset=utf-8' );
 		}
 		$row = $result->fetch_assoc();
 		?>
-		<form action="index.php" method="post">
+		<form action="index_M&B.php" method="post">
 			<input type="hidden" name="data[id]" value="<?php echo $row['id']?>"/>
 			<input type="hidden" name="page" value="modifier"/>
 			Commerce:<br/>
 			<input type="text" name="nom_commerce" value="<?php echo $row['nom_commerce']?>"/><br/>
-			Nom propriétaire:<br/>
-			<input type="text" name="nom_proprietaire" value="<?php echo $row['nom_proprietaire']?>"/><br/>
-			email:<br/>
-			<input type="text" name="mail" value="<?php echo $row['mail']?>"/><br/>
-			numéro de téléphone:<br/>
-			<input type="text" name="num" value="<?php echo $row['num']?>"/><br/>
 			adresse:<br/>
 			<input type="text" name="adresse" value="<?php echo $row['adresse']?>"/><br/>
-			date inscription:<br/>
-			<input type="text" name="date_inscription" value="<?php echo $row['date_inscription']?>"/><br/>
+			numero:<br/>
+			<input type="text" name="numero" value="<?php echo $row['numero']?>"/><br/>
+			horaire:<br/>
+			<input type="text" name="horaire" value="<?php echo $row['horaire']?>"/><br/>
+			image:<br/>
+			<input type="text" name="image" value="<?php echo $row['image']?>"/><br/>
 			<input type="submit" value="Envoyer"/><br/>
 		</form>
 <?php
 	} else {
 		$sql = "UPDATE
-					`commerces`
+					`mode_beaute`
 				SET
 					`nom_commerce` = '". $db->real_escape_string( $_POST['nom_commerce'] ) ."',
-					`nom_proprietaire` = '". $db->real_escape_string( $_POST['nom_proprietaire'] ) ."',
-					`mail` = '". $db->real_escape_string( $_POST['mail'] ) ."',
-					`num`='". $db->real_escape_string( $_POST['num'] ) ."',
-					`adresse`='". $db->real_escape_string( $_POST['adresse'] ) ."',
-                    `date_inscription`='". $db->real_escape_string( $_POST['date_inscription'] ) ."'
+					`adresse` = '". $db->real_escape_string( $_POST['adresse'] ) ."',
+					`numero` = '". $db->real_escape_string( $_POST['numero'] ) ."',
+					`horaire` = '". $db->real_escape_string( $_POST['horaire'] ) ."',
+					`image` = '". $db->real_escape_string( $_POST['image'] ) ."'
 				WHERE
 					`id` = ". (int) $_POST['data']['id'] .";";
 		if ( !( $result = $db->query( $sql ) ) ) {
 			die( 'echec' );
 		}
-		header( 'Location: index.php' );
+		header( 'Location: index_M&B.php' );
 	}

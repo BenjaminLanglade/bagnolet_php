@@ -3,19 +3,19 @@ header( 'content-type: text/html; charset=utf-8' );
 	if( isset( $_POST['confirmation'])){
 		// confirmation OK
 		$sql = "DELETE FROM
-					`commerces`
+					`mode_beaute`
 				WHERE
 					id = ". (int) $_POST['id'] ."
 				LIMIT 1;";
 		if ( !$db->query( $sql )) {
 			die( 'Supression échoué' );
 		}
-		header( 'Location: index.php' );
+		header( 'Location: index_M&B.php' );
 	} else {
 		// affichage demande de confirmation
 ?>
 	Voulez-vous vraiment supprimer?<br />
-	<form action="index.php" method="post">
+	<form action="index_M&B.php" method="post">
 		<input type="hidden" name="page" value="supprimer"/>
 		<input type="hidden" name="confirmation" value="1"/>
 		<input type="hidden" name="id" value="<?php echo $_REQUEST['id']?>"/>

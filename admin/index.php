@@ -1,20 +1,16 @@
-<?php
-header( 'content-type: text/html; charset=utf-8' );
-	try {
-		$db = new mysqli( 'localhost', 'root', '', 'cmsBagnolet' );
-	} catch (mysqli_sql_exception $e) {
-		die('Probleme de connexion');
-	}
-	define( 'PAGE_PAR_DEFAUT' , 'accueil' );
-	$pages_admin = array(
-		PAGE_PAR_DEFAUT => 'include/accueil.php',
-		'ajouter' => 'include/ajouter.php',
-		'supprimer' => 'include/supprimer.php',
-		'modifier' => 'include/modifier.php',
-	);
-	if( isset( $_REQUEST['page'] ) && isset( $pages_admin[ $_REQUEST['page'] ] )){
-		$page = $_REQUEST['page'];
-	} else {
-		$page = PAGE_PAR_DEFAUT;
-	}
-	require_once( $pages_admin[$page] );
+<!DOCTYPE html>
+<html lang="FR">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+</head>
+<body>
+    <ul>
+        <li><a href="">Alimentations</a></li>
+        <li><a href="">Cultures</a></li>
+        <li><a href="M&B/index_M&B.php">Mode et Beauté</a></li>
+        <li><a href="">Restaurations</a></li>
+        <li><a href="">Services</a></li>
+    </ul>
+</body>
+</html>
